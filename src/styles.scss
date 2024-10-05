@@ -3,8 +3,18 @@ html, body {
     margin: 0; 
     padding: 0;
   }
-.main-content{
-    //height of every page will be the height of the viewport minus the height of the navbar
+
+.router-content{
+    //height of every page will be the height of the viewport minus the height of the (navbar + breadcrumb)
     height: calc(100vh - 60px);
+    width: 100vw;
     margin-top: 60px;
+}
+
+.nav-breadcrumb {
+    height: 5% !important;
+}
+
+.main-content {
+    height: 95% !important;
 }
