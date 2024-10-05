@@ -1,1 +1,12 @@
 @import 'bootstrap/scss/bootstrap';
+/* Ensure the body and html elements fill the height of the viewport */
+html, body {
+    height: 100%;
+    margin: 0; /* Remove default margins */
+    padding: 0;
+  }
+.router-content
+{
+  //for the main content not to be blocked by the navbar  
+  padding-top: 60px;
+}
