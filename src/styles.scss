@@ -1,9 +1,10 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons.css';
 
-html, body {
+body {
     margin: 0; 
     padding: 0;
+    box-sizing: border-box;
   }
 
   a{
@@ -41,4 +42,11 @@ html, body {
     font-weight: bold;
     margin: 0 !important;
   }
+/*#endregion */
+
+/*#region Custom table styling*/
+table
+{
+  width: 100%;
+}
 /*#endregion */

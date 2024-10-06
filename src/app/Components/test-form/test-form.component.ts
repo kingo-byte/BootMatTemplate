@@ -5,6 +5,7 @@ import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { DataTablesModule } from 'angular-datatables';
 import { Config } from 'datatables.net';
 
+
 @Component({
   selector: 'app-test-form',
   standalone: true,
@@ -15,7 +16,7 @@ import { Config } from 'datatables.net';
 
 export class TestFormComponent {
   dtOptions: Config = {
-    pagingType: 'full_numbers',
+    pagingType: 'full_numbers'
   };
   active = 1;
 }
