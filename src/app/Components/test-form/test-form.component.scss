@@ -43,3 +43,19 @@
 .search-input:focus + .suggestions-container {
   display: block;
 }
+
+table {
+  width: 100%;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width:10px;
+}
+
+
+
