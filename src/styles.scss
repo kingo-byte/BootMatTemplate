@@ -6,6 +6,10 @@ html, body {
     padding: 0;
   }
 
+  a{
+    cursor: pointer;
+  }
+
 .router-content{
     //height of every page will be the height of the viewport minus the height of the (navbar + breadcrumb)
     height: calc(100vh - 60px - 40px);
