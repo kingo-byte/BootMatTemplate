@@ -37,8 +37,8 @@
       <div class="dropdown" ngbDropdown>
         <a href="#" class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle" ngbDropdownToggle>
           <svg class="rounded-circle" width="40" height="40">
-            <use xlink:href="#custom-logo"/>
-            </svg>
+            <use xlink:href="#custom-logo"></use>
+          </svg>
         </a>
         <ul ngbDropdownMenu class="dropdown-menu dropdown-menu-end dropdown-menu-dark text-small shadow">
           <li><a class="dropdown-item" href="#">New project...</a></li>
@@ -51,33 +51,50 @@
     </div>
   </nav>
   
-  
-<!-- Offcanvas Sidebar Template -->
-<ng-template #sidebarContent>
+  <!-- Offcanvas Sidebar Template -->
+  <ng-template #sidebarContent>
     <div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark h-100">
-    <!-- Sidebar Header -->
-    <a href="/" class="d-flex align-items-center text-white text-decoration-none">
+      <!-- Sidebar Header -->
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <svg class="bi pe-none me-2" width="40" height="32">
-        <use xlink:href="#custom-logo"/>
+          <use xlink:href="#custom-logo"></use>
         </svg>
         <span class="fs-4">Alterna Call Center</span>
-    </a>
-    <hr>
-
-    <!-- Sidebar Navigation Links -->
-    <ul class="nav nav-pills flex-column mb-auto">
+      </a>
+      <hr>
+  
+      <!-- Sidebar Navigation Links -->
+      <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page">
+          <a href="#" class="nav-link text-white sgbl-nav-link">
             <i class="bi bi-house-fill"></i>
             Home
-        </a>
+          </a>
         </li>
-        <li>
-        <a href="#" class="nav-link text-white">
+  
+        <li class="nav-item">
+          <!-- Dashboard link with toggle for collapse -->
+          <a href="#" class="nav-link text-white sgbl-nav-link" (click)="isDashboardCollapsed = !isDashboardCollapsed">
             <i class="bi bi-speedometer2"></i>
             Dashboard
-        </a>
+          </a>
+  
+          <!-- Collapsible sub-menu using ngbCollapse -->
+          <ul [ngbCollapse]="isDashboardCollapsed" class="list-unstyled ps-3">
+            <li class="nav-item">
+              <a href="#" class="nav-link text-white sgbl-sub-link">
+                <i class="bi bi-graph-up"></i>
+                Analytics
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link text-white sgbl-sub-link">
+                <i class="bi bi-gear"></i>
+                Settings
+              </a>
+            </li>
+          </ul>
         </li>
-    </ul>
-  </div>
-</ng-template>
+      </ul>
+    </div>
+  </ng-template>
