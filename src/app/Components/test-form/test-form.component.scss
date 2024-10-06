@@ -44,18 +44,10 @@
   display: block;
 }
 
-table {
-  width: 100%;
+:host ::ng-deep .ngx-datatable.bootstrap .datatable-header {
+  background-color: #f8f9fa;
 }
 
-.mat-mdc-form-field {
-  font-size: 14px;
-  width: 100%;
+:host ::ng-deep .ngx-datatable.bootstrap .datatable-row {
+  background-color: #ffffff;
 }
-
-td, th {
-  width:10px;
-}
-
-
-
