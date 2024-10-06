@@ -38,16 +38,3 @@
 .suggestion-item:hover {
   background-color: #f0f0f0;
 }
-
-/* Show suggestions when input is focused */
-.search-input:focus + .suggestions-container {
-  display: block;
-}
-
-:host ::ng-deep .ngx-datatable.bootstrap .datatable-header {
-  background-color: #f8f9fa;
-}
-
-:host ::ng-deep .ngx-datatable.bootstrap .datatable-row {
-  background-color: #ffffff;
-}

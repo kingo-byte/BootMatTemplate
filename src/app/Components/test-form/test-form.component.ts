@@ -14,6 +14,8 @@ import { Config } from 'datatables.net';
 })
 
 export class TestFormComponent {
-  dtOptions: Config = {};
+  dtOptions: Config = {
+    pagingType: 'full_numbers',
+  };
   active = 1;
 }
