@@ -16,12 +16,8 @@ body {
 
 .router-content{
     //height of every page will be the height of the viewport minus the height of the (navbar + breadcrumb)
-    height: calc(100vh - 60px - 40px);
+    height: calc(100vh - 60px);
     margin-top: 60px;
-  }
-
-.nav-breadcrumb {
-    height: 40px !important;
 }
 
 /*#region Custom card styling*/
