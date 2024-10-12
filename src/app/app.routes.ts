@@ -1,9 +1,16 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './Components/home/home.component';
-import { TestFormComponent } from './Components/test-form/test-form.component';
+import { AppComponent } from './app.component';
 
 export const routes: Routes = [
-    {path: '', component: HomeComponent},
-    {path: 'test-form', component: TestFormComponent},
-    {path: '**', redirectTo: ''}    
+    {
+        path: 'auth',
+        loadChildren: () =>
+          import('./Modules/auth/auth.module').then((m) => m.AuthModule),
+     },
+    {
+      path: 'main',
+      loadChildren: () =>
+        import('./Modules/main/main.module').then((m) => m.MainModule),
+    },
+    {path: '**', redirectTo: 'main'}    
 ];

@@ -5,7 +5,6 @@ import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { DataTablesModule } from 'angular-datatables';
 import { Config } from 'datatables.net';
 
-
 @Component({
   selector: 'app-test-form',
   standalone: true,
