@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../../Services/auth.service';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-authenticate',
@@ -10,12 +10,29 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './authenticate.component.scss'
 })
 export class AuthenticateComponent implements OnInit{
-  constructor(private authService: AuthService, private router: Router){}
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute){}
 
   ngOnInit() {
-    this.authService.authenticate().subscribe({
+    let ticket: string | null = this.route.snapshot.queryParamMap.get('ticket');
+
+    //prevent the user from going back to here if he already has a token
+    if(sessionStorage.getItem('token')){
+      console.log('User already has a token');
+      this.router.navigate(['/main']);
+      return;
+    } 
+
+    if(!ticket) {
+      throw new Error('Ticket is required');
+      
+      //go back to dashboard
+    }
+
+    this.authService.authenticate(ticket!).subscribe({
       next: (response) => {
         sessionStorage.setItem('token', response.token);
+        sessionStorage.setItem('ticket', ticket!);
+
         this.router.navigate(['/main']); 
       },
       error: (error) => {

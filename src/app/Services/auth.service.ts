@@ -7,20 +7,31 @@ import { environment } from '../Environments/environment.dev';
   providedIn: 'root'
 })
 export class AuthService {
-  private tokenSubject = new BehaviorSubject<string | null>(null);
+  private isRefreshingSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public isRefreshing = false; 
+
   constructor(private http: HttpClient) { }
 
-  authenticate(): Observable<any> {
+  authenticate(ticket: string): Observable<any> {
     console.log('called auth service');
 
-    return this.http.post<Observable<any>>(`${environment.api}/auth/authenticate`,{});
+    return this.http.post<Observable<any>>(`${environment.api}/auth/authenticate`,{ticket: ticket});
   }
 
   getToken(): string | null {
-    if (!this.tokenSubject.value) {
-      this.tokenSubject.next(sessionStorage.getItem('token'));
-    }
+      return sessionStorage.getItem('token');
+  }
 
-    return this.tokenSubject.value;
+  setToken(token: string):void{
+    sessionStorage.setItem('token', token!)
+  }
+
+  getTicket():string | null{
+    return sessionStorage.getItem('ticket');
+  }
+
+  logout(): void {  
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('ticket');
   }
 }
