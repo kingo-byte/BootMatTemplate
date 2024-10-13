@@ -15,17 +15,18 @@ import { LoggedInUser } from '../../Services/Models/customModels';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-  loggedInUser!: LoggedInUser;
-  
-  constructor(private authService: AuthService) { 
-   this.loggedInUser = this.authService.getLoggedInUser();
-
-   console.log(this.loggedInUser);
-  }
-
+  loggedInUser: LoggedInUser | null = null;
   private offcanvasService = inject(NgbOffcanvas);
   faBars = faBars;
   isDashboardCollapsed = true;
+
+  constructor(private authService: AuthService) { 
+    this.authService.loggedInUser$.subscribe(user => {
+      this.loggedInUser = user;
+    });
+    
+    console.log('Logged in user:', this.loggedInUser);
+  }
 
   open(content: TemplateRef<any>) {
     this.offcanvasService.open(content, {
