@@ -4,6 +4,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../Services/auth.service';
+import { LoggedInUser } from '../../Services/Models/customModels';
 
 @Component({
   selector: 'app-navbar',
@@ -13,6 +15,14 @@ import { CommonModule } from '@angular/common';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
+  loggedInUser!: LoggedInUser;
+  
+  constructor(private authService: AuthService) { 
+   this.loggedInUser = this.authService.getLoggedInUser();
+
+   console.log(this.loggedInUser);
+  }
+
   private offcanvasService = inject(NgbOffcanvas);
   faBars = faBars;
   isDashboardCollapsed = true;
