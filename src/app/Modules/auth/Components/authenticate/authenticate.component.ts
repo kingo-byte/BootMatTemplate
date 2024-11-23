@@ -16,7 +16,7 @@ export class AuthenticateComponent implements OnInit{
     let ticket: string | null = this.route.snapshot.queryParamMap.get('ticket');
 
     //prevent the user from going back to here if he already has a token
-    if(sessionStorage.getItem('token')){
+    if(this.authService.getToken()){
       console.log('User already has a token');
       this.router.navigate(['/main']);
       return;
@@ -24,15 +24,15 @@ export class AuthenticateComponent implements OnInit{
 
     if(!ticket) {
       throw new Error('Ticket is required');
-      
       //go back to dashboard
     }
 
     this.authService.authenticate(ticket!).subscribe({
       next: (response) => {
-        sessionStorage.setItem('token', response.token);
-        sessionStorage.setItem('ticket', ticket!);
-
+        this.authService.setToken(response.token);
+        this.authService.setTicket(ticket!); 
+        this.authService.isLoggedInSignal.set(true);  
+        
         this.router.navigate(['/main']); 
       },
       error: (error) => {

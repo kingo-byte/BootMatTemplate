@@ -1,4 +1,4 @@
-import { Component, inject, TemplateRef } from '@angular/core';
+import { Component, computed, inject, TemplateRef } from '@angular/core';
 import { NgbDatepickerModule, NgbOffcanvas, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
@@ -9,17 +9,20 @@ import { AuthService } from '../../../../Services/auth.service';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [NgbDatepickerModule, NgbDropdownModule, NavbarComponent, NavbarComponent, FontAwesomeModule, NgbCollapseModule, CommonModule],
+  imports: [NgbDatepickerModule, NgbDropdownModule, FontAwesomeModule, NgbCollapseModule, CommonModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-  constructor(private authService: AuthService){
-    console.log(authService.getToken())
-  }
+  isLoggedIn = computed(() => this.authService.isLoggedInSignal());
+
   private offcanvasService = inject(NgbOffcanvas);
   faBars = faBars;
   isDashboardCollapsed = true;
+
+  constructor(private authService: AuthService){
+    console.log(this.isLoggedIn());
+  }
 
   open(content: TemplateRef<any>) {
     this.offcanvasService.open(content, {

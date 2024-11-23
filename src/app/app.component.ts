@@ -1,6 +1,7 @@
-import { Component} from '@angular/core';
+import { Component, computed, effect} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthModule } from './Modules/auth/auth.module';
+import { AuthService } from './Services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,5 +11,6 @@ import { AuthModule } from './Modules/auth/auth.module';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  constructor(private authService: AuthService) {}
   title = 'BootMatTemplate';
 }
