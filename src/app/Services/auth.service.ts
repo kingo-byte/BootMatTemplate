@@ -1,48 +1,64 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from '../Environments/environment.dev';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import * as jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   isLoggedInSignal = signal<boolean>(this.isLoggedIn());
+  decodedToken = signal<{ [key: string]: string } | null>(this.initializeDecodedToken());
 
-  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
+  constructor(private http: HttpClient) {}
 
   authenticate(ticket: string): Observable<any> {
-    return this.http.post<Observable<any>>(`${environment.api}/auth/authenticate`, {ticket: ticket});
+    return this.http.post<Observable<any>>(`${environment.api}/auth/authenticate`, { ticket });
   }
 
   isLoggedIn(): boolean {
-    let token = sessionStorage.getItem('access-token');
-    return token ? true : false;
+    const token = sessionStorage.getItem('access-token');
+    return !!token;
   }
 
-  setToken(token: string):void{
-    sessionStorage.setItem('access-token', token!)
+  //#region token, ticket setters getters
+  setToken(token: string): void {
+    sessionStorage.setItem('access-token', token);
+    this.decodedToken.set(this.getClaims(token));
+    this.isLoggedInSignal.set(true);
   }
 
-  setTicket(ticket: string):void{
-    sessionStorage.setItem('ticket', ticket!)
+  setTicket(ticket: string): void {
+    sessionStorage.setItem('ticket', ticket);
   }
 
   getToken(): string | null {
-      return sessionStorage.getItem('access-token');
+    return sessionStorage.getItem('access-token');
   }
-  
-  getTicket():string | null{
+
+  getTicket(): string | null {
     return sessionStorage.getItem('ticket');
   }
+  //#endregion
 
-  getClaims(): any{
-     return this.isLoggedInSignal() ? this.jwtHelper.decodeToken(this.getToken()!) : null;
+  getClaims(token: string): any {
+    return token ? jwt_decode.jwtDecode(token): null; 
   }
 
-  logout(): void {  
+  logout(): void {
     sessionStorage.removeItem('access-token');
     sessionStorage.removeItem('ticket');
+    this.isLoggedInSignal.set(false);
+    this.decodedToken.set(null);
+  }
+
+  private initializeDecodedToken(): { [key: string]: string } | null {
+    const token = this.getToken();
+    if (!token) {
+      console.log('No token found during AuthService initialization.');
+      return null;
+    }
+    return this.getClaims(token);
   }
 }

@@ -15,6 +15,7 @@ import { AuthService } from '../../../../Services/auth.service';
 })
 export class NavbarComponent {
   isLoggedIn = computed(() => this.authService.isLoggedInSignal());
+  decodedToken = computed(() => this.authService.decodedToken());
 
   private offcanvasService = inject(NgbOffcanvas);
   faBars = faBars;
@@ -22,6 +23,7 @@ export class NavbarComponent {
 
   constructor(private authService: AuthService){
     console.log(this.isLoggedIn());
+    console.log(this.decodedToken()!['role']!);
   }
 
   open(content: TemplateRef<any>) {

@@ -4,11 +4,6 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
 import { AuthService } from './Services/auth.service';
-import { JwtModule } from "@auth0/angular-jwt";
-
-export function tokenGetter() {
-  return sessionStorage.getItem("access-token");
-}
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,12 +12,5 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideHttpClient(),
     AuthService,
-    importProvidersFrom(
-    JwtModule.forRoot({
-        config: {
-            tokenGetter: tokenGetter
-        },
-    }),
-  )
   ],
 };

@@ -30,9 +30,7 @@ export class AuthenticateComponent implements OnInit{
     this.authService.authenticate(ticket!).subscribe({
       next: (response) => {
         this.authService.setToken(response.token);
-        this.authService.setTicket(ticket!); 
-        this.authService.isLoggedInSignal.set(true);  
-        
+        this.authService.setTicket(ticket!);         
         this.router.navigate(['/main']); 
       },
       error: (error) => {
