@@ -4,7 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../../../Services/auth.service';
+import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-navbar',

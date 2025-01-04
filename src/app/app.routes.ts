@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 
 export const routes: Routes = [
      {
@@ -8,9 +7,21 @@ export const routes: Routes = [
           import('./Modules/auth/auth.module').then((m) => m.AuthModule),
      },
      {
-      path: 'main',
-      loadChildren: () =>
-        import('./Modules/main/main.module').then((m) => m.MainModule),
+        path: 'home',
+        loadChildren: () =>
+          import('./Modules/home/home.module').then((m) => m.HomeModule),
      },
-    {path: '**', redirectTo: 'auth'}    
+     {
+        path: 'in-bound-calls',
+        loadChildren: () =>
+          import('./Modules/in-bound-calls/in-bound-calls.module').then((m) => m.InBoundCallsModule),
+     },
+     {
+        path: 'out-bound-calls',
+        loadChildren: () =>
+          import('./Modules/out-bound-calls/out-bound-calls.module').then((m) => m.OutBoundCallsModule),
+     },
+    {
+        path: '**', redirectTo: 'auth'
+    }    
 ];

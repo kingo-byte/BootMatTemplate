@@ -18,7 +18,7 @@ export class AuthenticateComponent implements OnInit{
     //prevent the user from going back to here if he already has a token
     if(this.authService.getToken()){
       console.log('User already has a token');
-      this.router.navigate(['/main']);
+      this.router.navigate(['/home']);
       return;
     } 
 
@@ -31,7 +31,7 @@ export class AuthenticateComponent implements OnInit{
       next: (response) => {
         this.authService.setToken(response.token);
         this.authService.setTicket(ticket!);         
-        this.router.navigate(['/main']); 
+        this.router.navigate(['/home']); 
       },
       error: (error) => {
         console.log(error);
