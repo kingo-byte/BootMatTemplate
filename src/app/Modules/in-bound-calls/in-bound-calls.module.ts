@@ -1,14 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { InBoundCallsRoutingModule } from './in-bound-calls-routing.module';
+import { MainComponent } from './main/main.component';
+import { EditComponent } from './Components/edit/edit.component';
+import { ViewComponent } from './Components/view/view.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    InBoundCallsRoutingModule
+    RouterModule,
+    MainComponent,
+    EditComponent,
+    ViewComponent
   ]
 })
 export class InBoundCallsModule { }

@@ -1,14 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { OutBoundCallsRoutingModule } from './out-bound-calls-routing.module';
+import { MainComponent } from './main/main.component';
+import { EditComponent } from './Components/edit/edit.component';
+import { ViewComponent } from './Components/view/view.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    OutBoundCallsRoutingModule
+    RouterModule,
+    MainComponent,
+    EditComponent,
+    ViewComponent
   ]
 })
 export class OutBoundCallsModule { }
