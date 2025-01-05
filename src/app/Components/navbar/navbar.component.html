@@ -68,7 +68,7 @@
       <!-- Sidebar Navigation Links -->
       <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-          <a class="nav-link text-white sgbl-nav-link">
+          <a class="nav-link text-white sgbl-nav-link" [routerLink]="['']">
             <i class="bi bi-house-fill"></i>
             Home
           </a>
@@ -78,7 +78,7 @@
           <!-- Dashboard link with toggle for collapse -->
           <a class="nav-link text-white sgbl-nav-link" (click)="isDashboardCollapsed = !isDashboardCollapsed">
             <i class="bi bi-speedometer2"></i>
-            Dashboard
+            Calls
           </a>
   
           <!-- Collapsible sub-menu using ngbCollapse -->
@@ -86,18 +86,18 @@
             
             @if(decodedToken()!['role']! === 'admin'){
               <li class="nav-item">
-                <a class="nav-link text-white sgbl-sub-link">
+                <a class="nav-link text-white sgbl-sub-link" [routerLink]="['/in-bound-calls/view']">
                   <i class="bi bi-graph-up"></i>
-                  Analytics
+                   In Bound Calls
                 </a>
               </li>
 
             }
 
             <li class="nav-item">
-              <a class="nav-link text-white sgbl-sub-link">
+              <a class="nav-link text-white sgbl-sub-link" [routerLink]="['/out-bound-calls/view']">
                 <i class="bi bi-gear"></i>
-                Settings
+                  Out Bound Calls
               </a>
             </li>
           </ul>
